@@ -3,53 +3,53 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Gizli Mesaj</title>
+  <title>Welcome</title>
   <style>
-    body {
-      background: black;
-      color: white;
-      text-align: center;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
+    html, body {
       margin: 0;
+      padding: 0;
+      height: 100%;
+      background: black;
+      overflow: hidden;
     }
-    #playButton {
-      background-color: #ff0000;
-      border: none;
-      color: white;
+    #startBtn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       padding: 20px 40px;
       font-size: 20px;
       cursor: pointer;
+      z-index: 10;
+      border: none;
       border-radius: 10px;
+      background-color: #ffffff;
+      color: #000000;
     }
-    #playButton:hover {
-      background-color: #ff5555;
+    video {
+      display: none;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
     }
   </style>
 </head>
 <body>
-
-  <button id="playButton">Sesi Başlat</button>
-
-  <audio id="rickAudio" preload="auto" style="display:none;">
-    <source src="rickroll.mp3" type="audio/mpeg">
-    Tarayıcınız ses etiketini desteklemiyor.
-  </audio>
+  <button id="startBtn">Devam etmek için tıkla</button>
+  <video id="rickVideo" controls>
+    <source src="rickroll.mp4" type="video/mp4" />
+    Tarayıcınız video etiketini desteklemiyor.
+  </video>
 
   <script>
-    const playButton = document.getElementById('playButton');
-    const audio = document.getElementById('rickAudio');
+    const button = document.getElementById('startBtn');
+    const video = document.getElementById('rickVideo');
 
-    // Butona tıklandığında ses çalsın ve buton gizlensin
-    playButton.addEventListener('click', () => {
-      audio.play().catch(error => {
-        console.error("Ses çalma hatası:", error);
-      });
-      playButton.style.display = 'none'; // Butonu gizle
+    button.addEventListener('click', () => {
+      button.style.display = 'none';
+      video.style.display = 'block';
+      video.play();
     });
   </script>
-
 </body>
 </html>
