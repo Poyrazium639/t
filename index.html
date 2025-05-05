@@ -3,53 +3,53 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Welcome</title>
+  <title>Gizli Mesaj</title>
   <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
+    body {
       background: black;
-      overflow: hidden;
+      color: white;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
     }
-    #startBtn {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+    #playButton {
+      background-color: #ff0000;
+      border: none;
+      color: white;
       padding: 20px 40px;
       font-size: 20px;
       cursor: pointer;
-      z-index: 10;
-      border: none;
       border-radius: 10px;
-      background-color: #ffffff;
-      color: #000000;
     }
-    video {
-      display: none;
-      width: 100vw;
-      height: 100vh;
-      object-fit: cover;
+    #playButton:hover {
+      background-color: #ff5555;
     }
   </style>
 </head>
 <body>
-  <button id="startBtn">Devam etmek için tıkla</button>
-  <video id="rickVideo" controls>
-    <source src="rickroll.mp4" type="video/mp4" />
-    Tarayıcınız video etiketini desteklemiyor.
-  </video>
+
+  <button id="playButton">Sesi Başlat</button>
+
+  <audio id="rickAudio" preload="auto" style="display:none;">
+    <source src="rickroll.mp3" type="audio/mpeg">
+    Tarayıcınız ses etiketini desteklemiyor.
+  </audio>
 
   <script>
-    const button = document.getElementById('startBtn');
-    const video = document.getElementById('rickVideo');
+    const playButton = document.getElementById('playButton');
+    const audio = document.getElementById('rickAudio');
 
-    button.addEventListener('click', () => {
-      button.style.display = 'none';
-      video.style.display = 'block';
-      video.play();
+    // Butona tıklandığında ses çalsın ve buton gizlensin
+    playButton.addEventListener('click', () => {
+      audio.play().catch(error => {
+        console.error("Ses çalma hatası:", error);
+      });
+      playButton.style.display = 'none'; // Butonu gizle
     });
   </script>
+
 </body>
 </html>
