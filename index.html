@@ -2,14 +2,54 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Ses Denemesi</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gizli Mesaj</title>
+  <style>
+    body {
+      background: black;
+      color: white;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    #playButton {
+      background-color: #ff0000;
+      border: none;
+      color: white;
+      padding: 20px 40px;
+      font-size: 20px;
+      cursor: pointer;
+      border-radius: 10px;
+    }
+    #playButton:hover {
+      background-color: #ff5555;
+    }
+  </style>
 </head>
 <body>
-  <h1>sa</h1>
-  <button onclick="document.getElementById('audio').play()">Sesi Başlat</button>
-  <audio id="audio" controls>
-    <source src="rickroll.mp3">
-    Tarayıcınız audio etiketini desteklemiyor.
+
+  <button id="playButton">Sesi Başlat</button>
+
+  <audio id="rickAudio" preload="auto" style="display:none;">
+    <source src="rickroll.mp3" type="audio/mpeg">
+    Tarayıcınız ses etiketini desteklemiyor.
   </audio>
+
+  <script>
+    const playButton = document.getElementById('playButton');
+    const audio = document.getElementById('rickAudio');
+
+    // Butona tıklandığında ses çalsın ve buton gizlensin
+    playButton.addEventListener('click', () => {
+      audio.play().catch(error => {
+        console.error("Ses çalma hatası:", error);
+      });
+      playButton.style.display = 'none'; // Butonu gizle
+    });
+  </script>
+
 </body>
 </html>
